@@ -31,7 +31,7 @@ classifiers=[
     "Topic :: Software Development :: Quality Assurance",
 ]
 dependencies = [
-    "flake8>=6",
+    "flake8>=5",
 ]
 dynamic = ["version"]
 
