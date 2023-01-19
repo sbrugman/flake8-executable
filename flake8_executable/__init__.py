@@ -165,7 +165,7 @@ class MainAnalyzer(ast.NodeVisitor):
 
     has_main = False
 
-    def visit_If(self, node):
+    def visit_If(self, node: ast.If) -> None:
         if isinstance(node.test, ast.Compare):
             c = node.test
             if (
@@ -197,7 +197,7 @@ class MainAnalyzer(ast.NodeVisitor):
                 print(ast.dump(c))
         self.generic_visit(node)
 
-    def visit_FunctionDef(self, node: ast.FunctionDef):
+    def visit_FunctionDef(self, node: ast.FunctionDef) -> ast.FunctionDef:
         """Prevent functions from being evaluated"""
         # self.generic_visit(node)
         return node
@@ -222,7 +222,7 @@ class ExecutableChecker:
         else:
             self.lines = lines
 
-    def _check_main(self):
+    def _check_main(self) -> bool:
         ma = MainAnalyzer()
         ma.visit(self.tree)
         return ma.has_main or self.filename.name == "__main__.py"
@@ -247,7 +247,7 @@ class ExecutableChecker:
 
     def get_flake8_codes(
         self, main: bool, shebang: Optional[Tuple[int, str, int]], is_executable: bool
-    ):
+    ) -> Iterable[Tuple[int, int, str, str]]:
         if shebang is not None:
             if shebang[2] > 0 and EXE004.should_check():
                 yield EXE004(line_number=shebang[0], offset=shebang[2])()
