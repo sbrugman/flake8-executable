@@ -31,7 +31,7 @@ classifiers=[
     "Topic :: Software Development :: Quality Assurance",
 ]
 dependencies = [
-    "flake8",
+    "flake8>=6",
 ]
 dynamic = ["version"]
 
@@ -43,7 +43,7 @@ find = {}
 
 [project.optional-dependencies]
 dev = [
-    "tox",
+    "tox>=4",
     "flake8-executable[test]",
     "flake8-executable[lint]",
 ]
