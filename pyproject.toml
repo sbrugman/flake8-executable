@@ -43,7 +43,7 @@ find = {}
 
 [project.optional-dependencies]
 dev = [
-    "tox>=4",
+    "tox>=3",
     "flake8-executable[test]",
     "flake8-executable[lint]",
 ]
